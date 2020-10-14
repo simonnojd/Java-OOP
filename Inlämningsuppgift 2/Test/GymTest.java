@@ -1,8 +1,10 @@
 import org.junit.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Scanner;
+
 import static org.junit.Assert.*;
 
 /**
@@ -33,13 +35,13 @@ public class GymTest {
 
         assertFalse(lineFromFile.contains("9911113059, Simon Nöjd"));
         assertTrue(lineFromFile.contains("Alhambra"));
-        assertEquals(lineFromFile,("7603021234, Alhambra Aromes"));
+        assertEquals(lineFromFile, ("7603021234, Alhambra Aromes"));
     }
 
     // Tests if creating the new file works and also if it contains the correct information
     @Test
     public void createFileTest() throws FileNotFoundException {
-        File file =  new File("src\\membership.txt");
+        File file = new File("src\\membership.txt");
         Scanner scanner = new Scanner(file);
         String lineFromFile = scanner.nextLine();
 

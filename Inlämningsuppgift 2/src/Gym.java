@@ -14,22 +14,19 @@ public class Gym {
 
     public Gym() {
 
-        try {
-            // Declaring a scanner then assigning the next input into a string
-            System.out.println("Skriv personnummret eller namnet på personen");
-            Scanner console = new Scanner(System.in);
-            String person = console.next();
+        // Declaring a scanner then assigning the next input into a string
+        System.out.println("Skriv personnummret eller namnet på personen");
+        Scanner console = new Scanner(System.in);
+        String person = console.next();
 
-            // Assigning the file to a variable called "file"
-            File file = new File("src\\customers.txt");
-            Scanner scanner = new Scanner(file);
+        // Declaring Strings for the first and second line
+        String firstLine;
+        String secondLine;
+        // Declaring a boolean which will be used to see if the person input a correct name or ID
+        boolean personExists = false;
 
-            // Declaring Strings for the first and second line
-            String firstLine;
-            String secondLine;
-            // Declaring a boolean which will be used to see if the person input a correct name or ID
-            boolean personExists = false;
-
+        File file = new File("src\\customers.txt");
+        try (Scanner scanner = new Scanner(file)) {
             // Using a while-loop to read all the lines in the file until it finds the user input
             while (scanner.hasNextLine()) {
 
@@ -64,13 +61,13 @@ public class Gym {
             }
         }
         // Error message if the file doesn't exist
-        catch (FileNotFoundException exception){
+        catch (FileNotFoundException exception) {
             System.out.println("Filen hittades inte");
         }
     }
 
     // Creating an instance of Gym
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Gym gym = new Gym();
     }
 }
