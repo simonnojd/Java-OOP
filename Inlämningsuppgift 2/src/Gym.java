@@ -14,24 +14,25 @@ public class Gym {
 
     public Gym() {
 
-        // Declaring a scanner then assigning the next input into a string
         System.out.println("Skriv personnummret eller namnet på personen");
+
+        // Declaring a scanner then assigning the next input into a string
         Scanner console = new Scanner(System.in);
         String person = console.next();
 
         // Declaring Strings for the first and second line
         String firstLine;
         String secondLine;
+
         // Declaring a boolean which will be used to see if the person input a correct name or ID
         boolean personExists = false;
 
         File file = new File("src\\customers.txt");
+        // Try-with-recourses on Scanner
         try (Scanner scanner = new Scanner(file)) {
             // Using a while-loop to read all the lines in the file until it finds the user input
             while (scanner.hasNextLine()) {
-
                 String lineFromFile = scanner.nextLine();
-
                 // If it finds the person, then it assigns the date into a string. And their name and ID into another String
                 if (lineFromFile.contains(person)) {
                     personExists = true;
@@ -40,7 +41,7 @@ public class Gym {
 
                     // Checks if the date in the file is 1 year or less compared to the date now
                     if (LocalDate.parse(secondLine).isAfter(LocalDate.now().minusYears(1))) {
-                        System.out.println(firstLine + " har ett aktivt medlemsskap, det betalades sist: " +
+                        System.out.println(firstLine + " har ett aktivt medlemsskap, det betalades senast: " +
                                 secondLine);
                         // Writes to a new file that that person has gone to the gym, and the date that it did
                         PrintWriter writer = new PrintWriter("src\\membership.txt");
@@ -49,9 +50,8 @@ public class Gym {
                     }
                     // Checks if the year in the file is more than 1 year compared to the date now
                     else if (LocalDate.parse(secondLine).isBefore(LocalDate.now().minusYears(1))) {
-                        System.out.println(firstLine + " är före detta medlem, men inte längre, det betalades sist: "
+                        System.out.println(firstLine + " är före detta medlem, men inte längre, det betalades senast: "
                                 + secondLine);
-                        break;
                     }
                 }
             }
