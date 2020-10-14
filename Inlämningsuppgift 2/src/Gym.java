@@ -60,9 +60,9 @@ public class Gym {
                 System.out.println("Den personen finns inte med i databasen");
             }
         }
-        // Error message if the file doesn't exist
-        catch (FileNotFoundException exception) {
-            System.out.println("Filen hittades inte");
+        // Error message if something is wrong
+        catch (Exception e) {
+            System.out.println("Något gick fel");
         }
     }
 
